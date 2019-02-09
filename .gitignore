@@ -1,0 +1,12 @@
+*.swo
+*.swp
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+session.vim
+.netrwhist
+*~
+node_modules
+.tmp
+.sass-cache
+tags
