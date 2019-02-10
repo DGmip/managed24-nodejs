@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongodb_1 = __importDefault(require("mongodb"));
+const cors_1 = __importDefault(require("cors"));
 // mongodb configuration
 const MongoClient = mongodb_1.default.MongoClient;
 const password = 'password25';
@@ -22,6 +23,12 @@ client.connect(err => {
 const port = 4220;
 const host = '0.0.0.0';
 const app = express_1.default();
+app.use(cors_1.default({
+    origin: [
+        'http://localhost:4200',
+        'http://localhost:9876'
+    ]
+}));
 // list the names in the db
 app.get('/names', (req, res) => {
     const names = client.db('manage24').collection('names');
@@ -54,6 +61,9 @@ app.get('/insert-names', (req, res) => {
         console.error('could not add the names', err);
         res.status(500).send({ 'error': 'could not add the names, ' + err });
     });
+});
+app.get('/*', (req, res) => {
+    res.status(404).send({ message: 'Route' + req.url + ' Not found.' });
 });
 app.listen(port, host);
 console.log('listening on ', port, host);

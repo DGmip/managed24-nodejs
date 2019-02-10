@@ -1,6 +1,7 @@
 import express from 'express'
 import mongodb from 'mongodb'
 import { Request, Response } from 'express'
+import cors from 'cors'
 
 // mongodb configuration
 const MongoClient = mongodb.MongoClient
@@ -22,6 +23,12 @@ const port = 4220
 const host = '0.0.0.0'
 
 const app = express()
+app.use(cors({
+  origin: [
+    'http://localhost:4200',
+    'http://localhost:9876'
+  ]
+}))
 
 // list the names in the db
 app.get('/names', (req: express.Request, res: express.Response) => {
@@ -56,6 +63,10 @@ app.get('/insert-names', (req: express.Request, res: express.Response) => {
     console.error('could not add the names', err)
     res.status(500).send({ 'error': 'could not add the names, ' + err })
   })
+})
+
+app.get('/*', (req: express.Request, res: express.Response) => {
+  res.status(404).send({ message: 'Route' + req.url + ' Not found.' })
 })
 
 app.listen(port, host)
