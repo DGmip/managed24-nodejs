@@ -92,39 +92,38 @@ app.get('/names', (req, res) => {
         res.status(500).send(error);
     });
 });
-// list the names in the db - Old version created by mistake
-app.get('/all-names', (req, res) => {
-    const names = client.db('manage24').collection('names');
-    const cursor = names.find({});
-    cursor.toArray()
-        .then((array) => {
-        console.log('the array', array);
-        res.send(array);
-    });
-});
+// list the names in the db - Old version created by mistake, removed since brief says 'a single endpoint'
+// app.get('/all-names', (req: express.Request, res: express.Response) => {
+//   const names = client.db('manage24').collection('names')
+//   const cursor = names.find({})
+//   cursor.toArray()
+//     .then((array) => {
+//       console.log('the array', array)
+//       res.send(array)
+//     })
+// })
 // insert the names into the db
-const insertNames = async function () {
-    const collectionRef = client.db('manage24').collection('names');
-    try {
-        const result = await collectionRef.insertMany(names);
-        return Promise.resolve(result);
-    }
-    catch (err) {
-        console.error(err);
-        return Promise.reject(err);
-    }
-};
-// insert names route
-app.get('/insert-names', (req, res) => {
-    insertNames().then(data => {
-        console.log('inserted name', data);
-        res.status(200).send(data);
-    }, (error) => {
-        const err = error.error;
-        console.error('could not add the names', err);
-        res.status(500).send({ 'error': 'could not add the names, ' + err });
-    });
-});
+// const insertNames = async function(): Promise<any> {
+//   const collectionRef = client.db('manage24').collection('names')
+//   try {
+//     const result = await collectionRef.insertMany(names)
+//     return Promise.resolve(result)
+//   } catch (err) {
+//     console.error(err)
+//     return Promise.reject(err)
+//   }
+// }
+// insert names route, removed since brief says 'a single endpoint'
+// app.get('/insert-names', (req: express.Request, res: express.Response) => {
+//   insertNames().then(data => {
+//     console.log('inserted name', data)
+//     res.status(200).send(data)
+//   }, (error) => {
+//     const err = error.error
+//     console.error('could not add the names', err)
+//     res.status(500).send({ 'error': 'could not add the names, ' + err })
+//   })
+// })
 app.get('/*', (req, res) => {
     res.status(404).send({ message: 'Route' + req.url + ' Not found.' });
 });
