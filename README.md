@@ -24,6 +24,8 @@ The endpoint must be secured.
 
   The intention was to add them both to a swarm with nodejs-app as the swarm manager and deploy them separately, but I did not get that far.
 
+  Should the previous command fail, you can run the image on the correct port with ```docker run -p 4000:8080 gcr.io/avian-pact-231312/nodejs-api```
+
 ## Running without Docker
   Without Docker it is necessary to pass the correct port as a parameter to main.js. This is because both images are exposing port 8080 and usually Docker would be mapping 8080 to 4000.
   ```node main.js port=4000```
@@ -40,7 +42,7 @@ The endpoint must be secured.
 - Initially wrote a FilterByName angular pipe on all of the names instead of querying the database
 
 ### Semicolons!
-  You might notice I don't use semi-colons in my typescript atm, [this article can shed a bit of light as to why](https://medium.com/@eugenkiss/dont-use-semicolons-in-typescript-474ccfe4bdb3)
+  You might notice I don't use semi-colons in my typescript atm, [this article can shed a bit of light as to why.](https://medium.com/@eugenkiss/dont-use-semicolons-in-typescript-474ccfe4bdb3)
 
 ### What I would do if I had more time
   - Use a local installation of MongoDB and not Atlas
