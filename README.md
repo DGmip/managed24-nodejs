@@ -36,14 +36,14 @@ The endpoint must be secured.
 
 ### Mistakes made:
 
-Bunched several commits together into one as I was initially just experimenting with Docker
-Initially wrote a FilterByName angular pipe on all of the names instead of querying the database
+- Bunched several commits together into one as I was initially just experimenting with Docker
+- Initially wrote a FilterByName angular pipe on all of the names instead of querying the database
 
 ### Semicolons!
   You might notice I don't use semi-colons in my typescript atm, [this article can shed a bit of light as to why](https://medium.com/@eugenkiss/dont-use-semicolons-in-typescript-474ccfe4bdb3)
 
 ### What I would do if I had more time
-  -Use a local installation of MongoDB and not Atlas
-  -Make a GKE cluster
-  -Use JWT for securing the endpoint, instead of just an API Key
-  -Make the connection to the db persistent / protected from failure
+  - Use a local installation of MongoDB and not Atlas
+  - Make a GKE cluster
+  - Use JWT for securing the endpoint, instead of just an API Key
+  - Make the connection to the db persistent / protected from failure
