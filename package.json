@@ -10,7 +10,7 @@
   "scripts": {
     "test": "node ./node_modules/jasmine/bin/jasmine.js ./spec/main.spec.js",
     "start": "node main.js",
-    "lint": "tslint -c tsconfig.json '**/*.ts'"
+    "lint": "tslint -c tslint.json '**/*.ts'"
   },
   "author": "",
   "license": "ISC",

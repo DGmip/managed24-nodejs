@@ -37,11 +37,11 @@ gcr.io/avian-pact-231312/nodejs-api:latest``` to get the image.
   ```npm run test```
   The endpoint is tested for each response case from the search-app folder
 
+## Linting 
+  ```npm run lint```
+
 ## Documentation
   [Documentation from Postman](https://documenter.getpostman.com/view/5558865/RztsnRVr#5095bef9-9fc4-45e4-a407-7d01ed24cf67)
-
-## Linting
-  ```npm run lint``` from teh search-app folder
 
 ### Mistakes made:
 
