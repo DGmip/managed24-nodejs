@@ -48,7 +48,12 @@ app.use(cors({
   ]
 }))
 
-// names search function
+// check that the api key is valid
+const checkKey = function(key: string): boolean {
+  return key === apiKey
+}
+
+// names search async function
 const searchNames = async function(searchTerm: string): Promise<any> {
   const names = client.db('manage24').collection('names')
   const cursor: mongodb.Cursor = names.find({ name: { $regex: searchTerm, $options: "$i" } })
@@ -60,10 +65,6 @@ const searchNames = async function(searchTerm: string): Promise<any> {
     console.error(err)
     return Promise.reject(err)
   }
-}
-
-const checkKey = function(key: string): boolean {
-  return key === apiKey
 }
 
 // names search endpoint
@@ -98,6 +99,7 @@ app.get('/names', (req: express.Request, res: express.Response) => {
       console.error('could not search the names', error.message)
       res.status(500).send(error)
     })
+
 })
 
 // list the names in the db - Old version created by mistake, removed since brief says 'a single endpoint'

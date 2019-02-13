@@ -45,7 +45,11 @@ app.use(cors_1.default({
         'http://localhost:9876'
     ]
 }));
-// names search function
+// check that the api key is valid
+const checkKey = function (key) {
+    return key === apiKey;
+};
+// names search async function
 const searchNames = async function (searchTerm) {
     const names = client.db('manage24').collection('names');
     const cursor = names.find({ name: { $regex: searchTerm, $options: "$i" } });
@@ -58,9 +62,6 @@ const searchNames = async function (searchTerm) {
         console.error(err);
         return Promise.reject(err);
     }
-};
-const checkKey = function (key) {
-    return key === apiKey;
 };
 // names search endpoint
 app.get('/names', (req, res) => {
