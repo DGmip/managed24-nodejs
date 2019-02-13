@@ -27,9 +27,6 @@ The endpoint must be secured.
   Should the previous command fail, you can run the image on the correct port with ```docker run -p 4000:8080 gcr.io/avian-pact-231312/nodejs-api``` after running ```docker pull 
 gcr.io/avian-pact-231312/nodejs-api:latest``` to get the image.
 
-  Alternatively, you can run
-
-
 ## Running without Docker
   Without Docker it is necessary to pass the correct port as a parameter to main.js. This is because both images are exposing port 8080 and usually Docker would be mapping 8080 to 4000.
   ```node main.js port=4000```
