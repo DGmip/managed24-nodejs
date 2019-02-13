@@ -31,7 +31,7 @@ const args = process.argv.slice(2)
 args.forEach((arg) => {
   const split = arg.split('=')
   const option = split[0]
-  const optionValue = parseInt(split[1])
+  const optionValue = parseInt(split[1], 10)
   // console.log('vars', option, optionValue, split)
   if (option === 'port') {
     port = optionValue
@@ -56,8 +56,8 @@ const checkKey = function(key: string): boolean {
 
 // names search async function
 const searchNames = async function(searchTerm: string): Promise<any> {
-  const names = client.db('manage24').collection('names')
-  const cursor: mongodb.Cursor = names.find({ name: { $regex: searchTerm, $options: "$i" } })
+  const collection = client.db('manage24').collection('names')
+  const cursor: mongodb.Cursor = collection.find({ name: { $regex: searchTerm, $options: '$i' } })
   try {
     const result = await cursor.toArray()
     console.log('result', result)

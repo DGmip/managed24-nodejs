@@ -24,7 +24,11 @@ The endpoint must be secured.
 
   The intention was to add them both to a swarm with nodejs-app as the swarm manager and deploy them separately, but I did not get that far.
 
-  Should the previous command fail, you can run the image on the correct port with ```docker run -p 4000:8080 gcr.io/avian-pact-231312/nodejs-api```
+  Should the previous command fail, you can run the image on the correct port with ```docker run -p 4000:8080 gcr.io/avian-pact-231312/nodejs-api``` after running ```docker pull 
+gcr.io/avian-pact-231312/nodejs-api:latest``` to get the image.
+
+  Alternatively, you can run
+
 
 ## Running without Docker
   Without Docker it is necessary to pass the correct port as a parameter to main.js. This is because both images are exposing port 8080 and usually Docker would be mapping 8080 to 4000.
@@ -34,7 +38,13 @@ The endpoint must be secured.
 
 ## Testing
   ```npm run test```
-  The endpoint is tested for each response case
+  The endpoint is tested for each response case from the search-app folder
+
+## Documentation
+  [Documentation from Postman](https://documenter.getpostman.com/view/5558865/RztsnRVr#5095bef9-9fc4-45e4-a407-7d01ed24cf67)
+
+## Linting
+  ```npm run lint``` from teh search-app folder
 
 ### Mistakes made:
 
@@ -49,3 +59,5 @@ The endpoint must be secured.
   - Make a GKE cluster
   - Use JWT for securing the endpoint, instead of just an API Key
   - Make the connection to the db persistent / protected from failure
+  - Integrate CI with Github/Lab
+  - Test the expressJS functions on this side, as well

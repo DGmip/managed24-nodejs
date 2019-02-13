@@ -4,16 +4,23 @@ let url = 'http://localhost:4000/names?apiKey=d25d81b8-9986-4202-80da-b33a6c2335
 const apiKey = 'd25d81b8-9986-4202-80da-b33a6c233580'
 const badApiKey = 'd25d81b8-9986-4202-80da-b33a6c23358'
 
+interface Data {
+  status: number
+  body: any
+}
+
 describe('Server', () => {
-  const data = {
-    body: null,
-    status: null
+  let data: Data = {
+    status: 0,
+    body: {}
   }
+
+  beforeEach(() => {
+  })
   afterAll(() => {
   })
 
   describe(`Get /names search for 'milly'`, () => {
-    const data: any = {}
     const expectedResult = [{ _id: '5c5e872caa69ef4be123ed27', name: 'Milly Shipman fail' }]
     beforeAll((done) => {
       req.get(url, (error, res: req.Response, body) => {
@@ -28,7 +35,6 @@ describe('Server', () => {
   })
 
   describe(`404 with the wrong route`, () => {
-    const data: any = {}
     beforeAll((done) => {
       url = 'http://localhost:4000/bad-route'
       req.get(url, (error, res: req.Response, body) => {
@@ -43,7 +49,6 @@ describe('Server', () => {
   })
 
   describe(`GET /names no search queryParameter`, () => {
-    const data: any = {}
     beforeAll((done) => {
       url = 'http://localhost:4000/names?apiKey=' + apiKey
       req.get(url, (error, res: req.Response, body) => {
@@ -59,7 +64,6 @@ describe('Server', () => {
   })
 
   describe(`GET with invalid API Key should throw 403`, () => {
-    const data: any = {}
     beforeAll((done) => {
       url = 'http://localhost:4000/names?apiKey=' + badApiKey + '&search=milly'
       req.get(url, (error, res: req.Response, body) => {
