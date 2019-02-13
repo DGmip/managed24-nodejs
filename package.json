@@ -1,11 +1,14 @@
 {
   "name": "managed-rest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DGmip/managed24-nodejs"
+  },
   "version": "1.0.0",
   "description": "A restful API with a single endpoint that given a search term returns a list of names that begin with that term",
   "main": "main.js",
   "scripts": {
-    "test": "jasmine test",
-    "test-init": "jasmine test init",
+    "test": "node ./node_modules/jasmine/bin/jasmine.js ./spec/main.spec.js",
     "start": "node main.js"
   },
   "author": "",
@@ -21,6 +24,8 @@
     "@types/express": "^4.16.1",
     "@types/jasmine": "^3.3.8",
     "@types/mongodb": "^3.1.19",
-    "mongoimport": "^1.0.6"
+    "@types/request": "^2.48.1",
+    "mongoimport": "^1.0.6",
+    "request": "^2.88.0"
   }
 }

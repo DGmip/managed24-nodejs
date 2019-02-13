@@ -3,7 +3,8 @@
     "./node_modules"
   ],
   "files": [
-    "./main.ts"
+    "./main.ts",
+    "./spec/main.spec.ts"
   ],
   "compilerOptions": {
     /* Basic Options */

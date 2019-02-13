@@ -1,15 +1,17 @@
 import express from 'express'
+const apiKey = 'd25d81b8-9986-4202-80da-b33a6c233580'
 import mongodb from 'mongodb'
+// check that the api key is valid
 import { Request, Response } from 'express'
 import cors from 'cors'
 import { Error } from './interfaces/error'
-const apiKey = 'd25d81b8-9986-4202-80da-b33a6c233580'
 
 // mongodb configuration
-const MongoClient = mongodb.MongoClient
+const mongodbClient = mongodb.MongoClient
 const password = 'password25'
 const uri = `mongodb+srv://admin:${ password }@cluster0-9l3qd.gcp.mongodb.net/test?retryWrites=true`
-const client = new MongoClient(uri, { useNewUrlParser: true })
+
+const client = new mongodbClient(uri, { useNewUrlParser: true })
 
 client.connect(err => {
   if (err) {
@@ -48,7 +50,6 @@ app.use(cors({
   ]
 }))
 
-// check that the api key is valid
 const checkKey = function(key: string): boolean {
   return key === apiKey
 }
@@ -68,7 +69,7 @@ const searchNames = async function(searchTerm: string): Promise<any> {
 }
 
 // names search endpoint
-app.get('/names', (req: express.Request, res: express.Response) => {
+export const namesAPICall = app.get('/names', (req: express.Request, res: express.Response) => {
   const searchTerm = req.query.search
   const key = req.query.apiKey
 

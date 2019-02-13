@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const apiKey = 'd25d81b8-9986-4202-80da-b33a6c233580';
 const mongodb_1 = __importDefault(require("mongodb"));
 const cors_1 = __importDefault(require("cors"));
-const apiKey = 'd25d81b8-9986-4202-80da-b33a6c233580';
 // mongodb configuration
-const MongoClient = mongodb_1.default.MongoClient;
+const mongodbClient = mongodb_1.default.MongoClient;
 const password = 'password25';
 const uri = `mongodb+srv://admin:${password}@cluster0-9l3qd.gcp.mongodb.net/test?retryWrites=true`;
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new mongodbClient(uri, { useNewUrlParser: true });
 client.connect(err => {
     if (err) {
         console.error('could not connect to the db', err);
@@ -45,7 +45,6 @@ app.use(cors_1.default({
         'http://localhost:9876'
     ]
 }));
-// check that the api key is valid
 const checkKey = function (key) {
     return key === apiKey;
 };
@@ -64,7 +63,7 @@ const searchNames = async function (searchTerm) {
     }
 };
 // names search endpoint
-app.get('/names', (req, res) => {
+exports.namesAPICall = app.get('/names', (req, res) => {
     const searchTerm = req.query.search;
     const key = req.query.apiKey;
     // reject if there is no sufficient api key
